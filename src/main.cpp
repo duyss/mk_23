@@ -16,15 +16,60 @@ int main () {
         gpio_toggle(GPIOE, GPIO11 | GPIO15);
         for(volatile uint32_t i = 0; i < 300'000; i++);
 
-         gpio_toggle(GPIOE, GPIO11 | GPIO15);
+        gpio_toggle(GPIOE, GPIO11 | GPIO15);
         for(volatile uint32_t i = 0; i < 50'000; i++);
-         gpio_toggle(GPIOE, GPIO10 | GPIO14);
+        gpio_toggle(GPIOE, GPIO10 | GPIO14);
         for(volatile uint32_t i = 0; i < 50'000; i++);
-         gpio_toggle(GPIOE, GPIO9 | GPIO13);
+        gpio_toggle(GPIOE, GPIO9 | GPIO13);
         for(volatile uint32_t i = 0; i < 50'000; i++);
-         gpio_toggle(GPIOE, GPIO8 | GPIO12);
+        gpio_toggle(GPIOE, GPIO8 | GPIO12);
         for(volatile uint32_t i = 0; i < 300'000; i++);
-        
-        
+
+        gpio_toggle(GPIOE, GPIO8);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO9);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO10);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO11);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO12);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO13);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO14);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO15);
+        for(volatile uint32_t i = 0; i < 300'000; i++);
+
+        gpio_toggle(GPIOE, GPIO15);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO14);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO13);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO12);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO11);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO10);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO9);
+        for(volatile uint32_t i = 0; i < 50'000; i++);
+        gpio_toggle(GPIOE, GPIO8);
+        for(volatile uint32_t i = 0; i < 300'000; i++);
+
+        gpio_toggle(GPIOE, GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 | GPIO14 | GPIO15);
+        for(volatile uint32_t i = 0; i < 300'000; i++);
+        gpio_toggle(GPIOE, GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 | GPIO14 | GPIO15);
+        for(volatile uint32_t i = 0; i < 300'000; i++);
+        gpio_toggle(GPIOE, GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 | GPIO14 | GPIO15);
+        for(volatile uint32_t i = 0; i < 300'000; i++);
+        gpio_toggle(GPIOE, GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 | GPIO14 | GPIO15);
+        for(volatile uint32_t i = 0; i < 300'000; i++);
+        gpio_toggle(GPIOE, GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 | GPIO14 | GPIO15);
+        for(volatile uint32_t i = 0; i < 300'000; i++);
+        gpio_toggle(GPIOE, GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 | GPIO14 | GPIO15);
+        for(volatile uint32_t i = 0; i < 1000'000; i++);
     }
 }
