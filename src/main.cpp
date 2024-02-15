@@ -1,48 +1,48 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
-#include <libopencm3/stm32/timer.h>
-#include <libopencm3/cm3/nvic.h>
+#include <libopencm3/stm32/usart.h>
 
+void setup () {
+    rcc_periph_clock_enable(RCC_GPIOA);
 
-constexpr uint16_t PERIOD_MS(1000);
+    gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO9 | GPIO10);
+    gpio_set_af(GPIOA,GPIO_AF7, GPIO9 | GPIO10);
 
-void blink_LED () {
-    if (timer_get_counter(TIM1) < PERIOD_MS / 2) gpio_set(GPIOE, GPIO9);
-    else gpio_clear(GPIOE, GPIO9);
+    rcc_periph_clock_enable(RCC_USART1);
+
+    usart_set_baudrate(USART1, 115200);
+    usart_set_databits(USART1, 8);
+    usart_set_stopbits(USART1, USART_STOPBITS_1);
+    usart_set_parity(USART1, USART_PARITY_NONE);
+
+    usart_set_mode(USART1, USART_MODE_TX_RX);
+    usart_set_flow_control(USART1, USART_FLOWCONTROL_NONE);
+
+    usart_enable(USART1);
 }
 
-void LED_gpio_setup () {
-    rcc_periph_clock_enable(RCC_GPIOE);
-    gpio_mode_setup(GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO9 | GPIO11);
-    gpio_mode_setup(GPIOE, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO14);
-    gpio_set_af(GPIOE, GPIO_AF2, GPIO14);
-}
-
-void timer_setup () {
-    rcc_periph_clock_enable(RCC_TIM1);
-    timer_set_prescaler(TIM1, rcc_get_timer_clk_freq(TIM1) / PERIOD_MS - 1);
-    timer_set_period(TIM1, PERIOD_MS - 1);
-
-    timer_enable_irq(TIM1, TIM_DIER_UIE);
-    nvic_enable_irq(NVIC_TIM1_UP_TIM16_IRQ);
-
-    timer_enable_counter(TIM1);
+void loop () {
+    usart_send_blocking(USART1, 'H');
+    usart_send_blocking(USART1, 'e');
+    usart_send_blocking(USART1, 'l');
+    usart_send_blocking(USART1, 'l');
+    usart_send_blocking(USART1, 'o');
+    usart_send_blocking(USART1, ' ');
+    usart_send_blocking(USART1, 'w');
+    usart_send_blocking(USART1, 'o');
+    usart_send_blocking(USART1, 'r');
+    usart_send_blocking(USART1, 'l');
+    usart_send_blocking(USART1, 'd');
+    usart_send_blocking(USART1, '!');
+    usart_send_blocking(USART1, '\r');
+    usart_send_blocking(USART1, '\n');
+    for (volatile uint32_t i=0; i<1000; ++i);
 }
 
 int main () {
-    rcc_clock_setup_pll(
-        &rcc_hsi_configs[RCC_CLOCK_HSI_64MHZ]
-    );
-
-    LED_gpio_setup();
-    timer_setup();
+    setup();
 
     while (true) {
-        blink_LED();
-    }
-}
-
-void tim1_up_tim16_isr(void) {
-    timer_clear_flag(TIM1, TIM_SR_UIF);
-    gpio_toggle(GPIOE, GPIO11);
+        loop();
+    }   
 }
