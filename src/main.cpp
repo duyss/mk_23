@@ -22,21 +22,8 @@ void setup () {
 }
 
 void loop () {
-    usart_send_blocking(USART1, 'H');
-    usart_send_blocking(USART1, 'e');
-    usart_send_blocking(USART1, 'l');
-    usart_send_blocking(USART1, 'l');
-    usart_send_blocking(USART1, 'o');
-    usart_send_blocking(USART1, ' ');
-    usart_send_blocking(USART1, 'w');
-    usart_send_blocking(USART1, 'o');
-    usart_send_blocking(USART1, 'r');
-    usart_send_blocking(USART1, 'l');
-    usart_send_blocking(USART1, 'd');
-    usart_send_blocking(USART1, '!');
-    usart_send_blocking(USART1, '\r');
-    usart_send_blocking(USART1, '\n');
-    for (volatile uint32_t i=0; i<1000; ++i);
+    uint8_t c = usart_recv_blocking(USART1);
+    usart_send_blocking(USART1, c);
 }
 
 int main () {
