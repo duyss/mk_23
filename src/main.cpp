@@ -5,8 +5,6 @@
 #include <libopencm3/cm3/nvic.h>
 #include <stdio.h>
 
-#include "ring_buf/ring_buf.hpp"
-
 int counter = 0;
 
 void setup () {
